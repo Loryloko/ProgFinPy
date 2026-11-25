@@ -30,21 +30,19 @@ poetry run uvicorn travel_agent_api.main:app --reload --port 8080
 - Stato del server: http://127.0.0.1:8080/
 - Documentazione e test: http://127.0.0.1:8080/docs, endpoint `POST /chat/travel-agent`
 
-Il `.env` viene letto solo all'avvio: dopo aver cambiato una chiave bisogna riavviare il server.
-
 ## Struttura
 
 ```
 travel_agent_api/
-├── config.py                  # lettura .env e nome del modello
-├── main.py                    # app FastAPI, CORS, endpoint GET /
-├── routes/chat_router.py      # POST /chat/travel-agent
-├── services/agent_service.py  # agente ReAct (LangGraph) con i 4 tool
+├── config.py                  
+├── main.py                    
+├── routes/chat_router.py      
+├── services/agent_service.py
 └── tools/
-    ├── flights_finder.py          # SerpApi Google Flights
-    ├── hotels_finder.py           # SerpApi Google Hotels
-    ├── chain_travel_plan.py       # itinerario strutturato (Pydantic)
-    └── chain_historical_expert.py # approfondimenti storici
+    ├── flights_finder.py          
+    ├── hotels_finder.py           
+    ├── chain_travel_plan.py       
+    └── chain_historical_expert.py 
 ```
 
 ## Modifiche rispetto ai manuali
@@ -79,7 +77,7 @@ Ho aggiunto delle `print` con prefisso, per seguire il flusso nel terminale:
 
 | Prefisso | Dove | Cosa mostra |
 |---|---|---|
-| `[CONFIG]` | `config.py` | modello in uso e presenza delle chiavi (True/False, mai il valore) |
+| `[CONFIG]` | `config.py` | modello in uso e presenza delle chiavi (True/False) |
 | `[ROUTER]` | `chat_router.py` | numero di messaggi ricevuti, ultimo messaggio, eventuali errori |
 | `[AGENT]` | `agent_service.py` | ogni messaggio della conversazione e i tool chiamati con i loro parametri |
 | `[FLIGHTS]` / `[HOTELS]` | tool | numero di risultati trovati o errore SerpApi |
